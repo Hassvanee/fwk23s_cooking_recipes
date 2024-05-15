@@ -1,25 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import Slides from "./components/Slides";
 import Meal from "./components/Meal";
-
-
+import ErrorPopup from "./components/ErrorPopup";
 
 const apiUrl = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
+
+
 
 function App() {
   const [meals, setMeals] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const fetchMeals = async (searchQuery) => {
     setIsLoading(true);
     try {
       const response = await fetch(apiUrl + searchQuery);
       const data = await response.json();
-      setMeals(data.meals);
+      if (!data.meals) {
+        setError("Inga recept hittades. Försök igen med en annan sökning.");
+        setMeals([]);
+      } else {
+        setMeals(data.meals);
+        setError(null);
+      }
     } catch (error) {
       console.error("Error fetching meals:", error);
+      setError("Ett fel uppstod vid hämtning av recept. Försök igen senare.");
     } finally {
       setIsLoading(false);
     }
@@ -34,8 +43,9 @@ function App() {
           <Meal key={meal.idMeal} meal={meal} />
         ))}
       </div>
-      
       <Footer />
+      {error && <ErrorPopup message={error} setError={setError} />}
+
     </div>
   );
 }
