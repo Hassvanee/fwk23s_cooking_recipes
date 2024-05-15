@@ -14,8 +14,10 @@ const Navbar = ({ handleSearch }) => {
     };
 
     return (
-        <div className='max-w-[1520] mx-auto flex justify-between items-center p-4'>
+        <div className='max-w-full mx-auto flex justify-between items-center p-4'>
             <div className='flex items-center'>
+            <div className='cursor-pointer'>
+            <AiOutlineMenu size={25} /></div>
                 <h1 className='text-2xl sm:text-3xl lg:text-4xl px-2 font-bold'>
                     What's <span className=' text-orange-500'>cooking?</span>
                 </h1>
@@ -32,9 +34,7 @@ const Navbar = ({ handleSearch }) => {
                     />
                 </div>
             </form>
-            <div className='cursor-pointer'>
-                <AiOutlineMenu size={25} />
-            </div>
+            
         </div>
     );
 };
