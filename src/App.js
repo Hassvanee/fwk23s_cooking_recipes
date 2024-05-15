@@ -5,6 +5,7 @@ import Slides from "./components/Slides";
 import Meal from "./components/Meal";
 
 
+
 const apiUrl = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
           <Meal key={meal.idMeal} meal={meal} />
         ))}
       </div>
+      
       <Footer />
     </div>
   );
