@@ -28,7 +28,7 @@ function App() {
     <div className="App">
       <Navbar handleSearch={fetchMeals} />
       <Slides />
-      <div className="grid md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-4 gap-6">
+      <div className="grid md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-5 gap-1">
         {meals.map((meal) => (
           <Meal key={meal.idMeal} meal={meal} />
         ))}
