@@ -4,15 +4,15 @@ import Navbar from "./components/Navbar";
 import Slides from "./components/Slides";
 import Meal from "./components/Meal";
 import ErrorPopup from "./components/ErrorPopup";
+import DetailPopup from "./components/DetailPopup";
 
 const apiUrl = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
-
-
 
 function App() {
   const [meals, setMeals] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [meal, setMeal] = useState(null);
 
   const fetchMeals = async (searchQuery) => {
     setIsLoading(true);
@@ -34,6 +34,14 @@ function App() {
     }
   };
 
+  const handleMealClose = () => {
+    setMeal(null);
+  };
+
+  const handleErrorClose = () => {
+    setError(null);
+  };
+
   return (
     <div className="App">
       <Navbar handleSearch={fetchMeals} />
@@ -44,8 +52,9 @@ function App() {
         ))}
       </div>
       <Footer />
-      {error && <ErrorPopup message={error} setError={setError} />}
-
+      {error && <ErrorPopup message={error} setError={handleErrorClose} />}
+      {meal && <DetailPopup meal={meal} onClose={handleMealClose} />}
+      
     </div>
   );
 }
