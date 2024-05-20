@@ -9,7 +9,9 @@ const Footer = () => {
                     <h1 className="w-full text-3xl font-bold text-black">What's <span className=" text-orange-500">cooking?</span></h1>
                     <p>© 2024 Hassvanee Samaae</p>
                     <div className="flex justify-between md:w-[75%] my-6">
-                        <FaGithubSquare size={30}/>
+                        <a href="https://github.com/Hassvanee/" target="_blank" rel="noopener noreferrer">
+                            <FaGithubSquare size={30} />
+                        </a>
                     </div>
                 </div>
             </div>
@@ -18,3 +20,4 @@ const Footer = () => {
 };
 
 export default Footer;
+
